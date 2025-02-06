@@ -34,11 +34,11 @@ CREATE TABLE IF NOT EXISTS sectors (
 -- Create affiliates table
 CREATE TABLE IF NOT EXISTS affiliates (
     id_associate SERIAL PRIMARY KEY,
-    affiliate_code INTEGER NOT NULL UNIQUE,
+    affiliate_code INTEGER UNIQUE,
     affiliate_name VARCHAR(200) NOT NULL,
     dni VARCHAR(20) NOT NULL UNIQUE,
     gender CHAR(1) NOT NULL,
-    email VARCHAR(100) UNIQUE,
+    contact VARCHAR(100) UNIQUE,
     sector_id INTEGER REFERENCES sectors(sector_id),
     has_children BOOLEAN DEFAULT false,
     has_disability BOOLEAN DEFAULT false,
