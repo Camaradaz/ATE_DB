@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS affiliates (
     affiliate_name VARCHAR(200) NOT NULL,
     dni VARCHAR(20) NOT NULL UNIQUE,
     gender CHAR(1) NOT NULL,
-    contact VARCHAR(100) UNIQUE,
+    contact VARCHAR(100),
     sector_id INTEGER REFERENCES sectors(sector_id),
     has_children BOOLEAN DEFAULT false,
     has_disability BOOLEAN DEFAULT false,

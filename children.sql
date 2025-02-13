@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS children (
     affiliate_id INTEGER NOT NULL REFERENCES affiliates(id_associate),
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
-    birth_date DATE NOT NULL,
-    dni VARCHAR(20) UNIQUE NOT NULL,
+    birth_date DATE,
+    dni VARCHAR(20),
     gender CHAR(1) NOT NULL,
     has_disability BOOLEAN DEFAULT false,
     notes TEXT,
@@ -58,10 +58,10 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 
 -- Create function to determine benefits
 CREATE OR REPLACE FUNCTION get_child_benefits(birth_date DATE)
-RETURNS TEXT[] AS $$
+RETURNS TEXT[] AS $function$
 DECLARE
     age_years INTEGER;
-    benefits TEXT[] := '{}';
+    benefits TEXT[] := ARRAY[]::TEXT[];
 BEGIN
     age_years := EXTRACT(YEAR FROM age(birth_date));
     
@@ -83,7 +83,7 @@ BEGIN
     
     RETURN benefits;
 END;
-$$ LANGUAGE plpgsql IMMUTABLE;
+$function$ LANGUAGE plpgsql IMMUTABLE;
 
 -- Create view for children with calculated age and benefits
 CREATE OR REPLACE VIEW children_details AS
