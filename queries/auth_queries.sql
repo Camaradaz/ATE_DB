@@ -31,4 +31,5 @@ FROM users u
 JOIN user_permissions up ON u.id = up.user_id
 JOIN permissions p ON up.permission_id = p.id
 WHERE u.username IN ('Vero', 'Flavia', 'Dani')
-GROUP BY u.username, u.role; 
+GROUP BY u.username, u.role;    
+

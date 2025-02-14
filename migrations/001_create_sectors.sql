@@ -5,3 +5,4 @@ CREATE TABLE IF NOT EXISTS sectors (
     sector_code VARCHAR(12) NOT NULL UNIQUE,
     created_at TIMESTAMPTZ DEFAULT now()
 );
+

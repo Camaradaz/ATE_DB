@@ -16,3 +16,4 @@ BEGIN
     WHERE u.username = p_username AND u.is_active = true;
 END;
 $$ LANGUAGE plpgsql; 
+
