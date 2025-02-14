@@ -94,30 +94,3 @@ SELECT
     get_child_benefits(c.birth_date) as eligible_benefits
 FROM children c
 JOIN affiliates a ON c.affiliate_id = a.id_associate;
-
--- Enable Row Level Security
-ALTER TABLE children ENABLE ROW LEVEL SECURITY;
-
--- Create policies for children
-CREATE POLICY "Allow authenticated users to read children"
-    ON children
-    FOR SELECT
-    TO authenticated
-    USING (true);
-
-CREATE POLICY "Allow authenticated users to insert children"
-    ON children
-    FOR INSERT
-    TO authenticated
-    WITH CHECK (true);
-
-CREATE POLICY "Allow authenticated users to update children"
-    ON children
-    FOR UPDATE
-    TO authenticated
-    USING (true);
-
--- Create indexes
-CREATE INDEX IF NOT EXISTS idx_children_affiliate_id ON children(affiliate_id);
-CREATE INDEX IF NOT EXISTS idx_children_birth_date ON children(birth_date);
-CREATE INDEX IF NOT EXISTS idx_children_dni ON children(dni);
