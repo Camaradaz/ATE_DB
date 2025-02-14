@@ -37,3 +37,20 @@ CREATE TABLE IF NOT EXISTS affiliates (
     created_at TIMESTAMPTZ DEFAULT now(),
     CONSTRAINT gender_check CHECK (gender IN ('M', 'F', 'O'))
 );
+
+-- Create affiliate history table
+CREATE TABLE IF NOT EXISTS affiliate_history (
+    history_id SERIAL PRIMARY KEY,
+    affiliate_id INTEGER REFERENCES affiliates(id_associate),
+    action_type VARCHAR(50) NOT NULL, -- 'UPDATE', 'BENEFIT_GRANTED', etc.
+    action_description TEXT NOT NULL,
+    old_data JSONB,
+    new_data JSONB,
+    performed_by UUID REFERENCES auth.users(id),
+    performed_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Create indexes for affiliates table
+CREATE INDEX IF NOT EXISTS idx_affiliates_sector_id ON affiliates(sector_id);
+CREATE INDEX IF NOT EXISTS idx_affiliates_dni ON affiliates(dni);
+CREATE INDEX IF NOT EXISTS idx_affiliates_affiliate_code ON affiliates(affiliate_code);

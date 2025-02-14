@@ -94,3 +94,8 @@ SELECT
     get_child_benefits(c.birth_date) as eligible_benefits
 FROM children c
 JOIN affiliates a ON c.affiliate_id = a.id_associate;
+
+-- Create indexes for children table
+CREATE INDEX IF NOT EXISTS idx_children_affiliate_id ON children(affiliate_id);
+CREATE INDEX IF NOT EXISTS idx_children_dni ON children(dni);
+CREATE INDEX IF NOT EXISTS idx_children_birth_date ON children(birth_date);

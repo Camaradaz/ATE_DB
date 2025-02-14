@@ -2,6 +2,7 @@
 ALTER TABLE sectors ENABLE ROW LEVEL SECURITY;
 ALTER TABLE affiliates ENABLE ROW LEVEL SECURITY;
 ALTER TABLE children ENABLE ROW LEVEL SECURITY;
+ALTER TABLE affiliate_history ENABLE ROW LEVEL SECURITY;
 
 -- Create policies for sectors
 CREATE POLICY "Allow authenticated users to read sectors"
@@ -60,13 +61,19 @@ CREATE POLICY "Allow authenticated users to update children"
     TO authenticated
     USING (true);
 
--- Create indexes for better performance
--- Affiliates indexes
-CREATE INDEX IF NOT EXISTS idx_affiliates_sector_id ON affiliates(sector_id);
-CREATE INDEX IF NOT EXISTS idx_affiliates_dni ON affiliates(dni);
-CREATE INDEX IF NOT EXISTS idx_affiliates_affiliate_code ON affiliates(affiliate_code);
+-- Create policies for affiliate_history
+CREATE POLICY "Enable read access for authenticated users" ON affiliate_history
+    FOR SELECT
+    TO authenticated
+    USING (true);
 
--- Children indexes
-CREATE INDEX IF NOT EXISTS idx_children_affiliate_id ON children(affiliate_id);
-CREATE INDEX IF NOT EXISTS idx_children_dni ON children(dni);
-CREATE INDEX IF NOT EXISTS idx_children_birth_date ON children(birth_date); 
+CREATE POLICY "Enable insert access for authenticated users" ON affiliate_history
+    FOR INSERT
+    TO authenticated
+    WITH CHECK (true);
+
+CREATE POLICY "Enable update access for authenticated users" ON affiliate_history
+    FOR UPDATE
+    TO authenticated
+    USING (true)
+    WITH CHECK (true);
