@@ -4,7 +4,7 @@ ALTER TABLE affiliates ENABLE ROW LEVEL SECURITY;
 ALTER TABLE children ENABLE ROW LEVEL SECURITY;
 ALTER TABLE affiliate_history ENABLE ROW LEVEL SECURITY;
 
--- Create policies for sectors
+
 CREATE POLICY "Allow authenticated users to read sectors"
     ON sectors
     FOR SELECT
@@ -23,7 +23,7 @@ CREATE POLICY "Allow authenticated users to update sectors"
     TO authenticated
     USING (true);
 
--- Create policies for affiliates
+
 CREATE POLICY "Allow authenticated users to read affiliates"
     ON affiliates
     FOR SELECT
@@ -42,7 +42,7 @@ CREATE POLICY "Allow authenticated users to update affiliates"
     TO authenticated
     USING (true);
 
--- Create policies for children
+
 CREATE POLICY "Allow authenticated users to read children"
     ON children
     FOR SELECT
@@ -61,7 +61,6 @@ CREATE POLICY "Allow authenticated users to update children"
     TO authenticated
     USING (true);
 
--- Create policies for affiliate_history
 CREATE POLICY "Enable read access for authenticated users" ON affiliate_history
     FOR SELECT
     TO authenticated

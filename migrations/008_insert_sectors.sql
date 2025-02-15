@@ -1,11 +1,3 @@
-/*
-  # Insert sectors data
-
-  1. Data Insertion
-    - Insert all sectors with their respective codes
-    - Uses ON CONFLICT to handle any potential duplicates
-*/
-
 INSERT INTO sectors (sector_id, sector_name, sector_code)
 VALUES 
   (1, 'ANSES', 'B020N0501100'),

@@ -1,28 +1,3 @@
-/*
-  # Children Schema for ATE
-
-  1. New Tables
-    - `children`
-      - `child_id` (serial, primary key)
-      - `affiliate_id` (integer, foreign key to affiliates)
-      - `first_name` (varchar)
-      - `last_name` (varchar)
-      - `birth_date` (date)
-      - `dni` (varchar, unique)
-      - `gender` (char)
-      - `has_disability` (boolean)
-      - `notes` (text)
-
-  2. New Functions
-    - `calculate_age`: Calculates exact age based on birth date
-    - `get_child_benefits`: Function to determine eligible benefits based on age
-
-  3. Security
-    - Enable RLS
-    - Add policies for authenticated users
-*/
-
--- Create children table
 CREATE TABLE IF NOT EXISTS children (
     child_id SERIAL PRIMARY KEY,
     affiliate_id INTEGER NOT NULL REFERENCES affiliates(id_associate),
@@ -38,7 +13,7 @@ CREATE TABLE IF NOT EXISTS children (
     CONSTRAINT birth_date_check CHECK (birth_date <= CURRENT_DATE)
 );
 
--- Create function to calculate exact age
+-- Calcular la edad automatica
 CREATE OR REPLACE FUNCTION calculate_age(birth_date DATE)
 RETURNS TEXT AS $$
 DECLARE
@@ -56,7 +31,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 
--- Create function to determine benefits
 CREATE OR REPLACE FUNCTION get_child_benefits(birth_date DATE)
 RETURNS TEXT[] AS $function$
 DECLARE
@@ -85,7 +59,7 @@ BEGIN
 END;
 $function$ LANGUAGE plpgsql IMMUTABLE;
 
--- Create view for children with calculated age and benefits
+
 CREATE OR REPLACE VIEW children_details AS
 SELECT 
     c.*,

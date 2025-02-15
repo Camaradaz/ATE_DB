@@ -1,11 +1,10 @@
--- Primero creamos un enum para los roles
 CREATE TYPE user_role AS ENUM ('admin', 'supervisor', 'usuario');
 
 -- Tabla de usuarios
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,  -- Nunca almacenar contraseñas en texto plano
+    password_hash VARCHAR(255) NOT NULL, -- Pixelea la contraseña
     role user_role NOT NULL,
     is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -56,4 +55,16 @@ INSERT INTO user_permissions (user_id, permission_id)
 SELECT 
     (SELECT id FROM users WHERE username = 'Secretaría'),
     id
-FROM permissions; 
+FROM permissions;
+
+CREATE TABLE affiliate_history (
+    history_id SERIAL PRIMARY KEY,
+    affiliate_id INTEGER REFERENCES affiliates(id_associate),
+    action_type VARCHAR(50) NOT NULL, 
+    action_description TEXT NOT NULL,
+    old_data JSONB,
+    new_data JSONB,
+    performed_by INTEGER REFERENCES users(id),  -- Modificado para referenciar a la tabla users
+    performed_at TIMESTAMPTZ DEFAULT now()
+); 
+

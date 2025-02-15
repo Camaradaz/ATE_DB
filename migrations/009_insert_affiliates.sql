@@ -1,4 +1,3 @@
--- Insert affiliates
 INSERT INTO affiliates 
   (affiliate_code, affiliate_name, dni, gender, contact, sector_id, has_children, has_disability)
 VALUES
@@ -1141,7 +1140,7 @@ VALUES
   (035353, 'TORRE DOMINGO VICENT', '08353443', 'M', NULL, 18, FALSE, FALSE),
   (637369, 'VALOPPI ROSA', '05118113', 'F', '4265-3441', 18, FALSE, FALSE),
   (413162, 'VERA VELAZQUEZ STELLA', '18712227', 'F', '1562162391', 18, FALSE, FALSE),
-  (136915, 'WIECIOROVSKI ELENA MARI', '04388275', 'F', NULL, 18, FALSE, FALSE),
+  (136915, 'WIECIOROVSKI ELENA MARI', '04388275', 'F', NULL, 18, FALSE, FALSE);
 
 
 
@@ -1149,4 +1148,3 @@ VALUES
 
 
 
-ON CONFLICT (affiliate_code) DO NOTHING;

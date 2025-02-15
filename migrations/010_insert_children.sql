@@ -1,4 +1,3 @@
--- Insert children data
 INSERT INTO children 
   (child_id, affiliate_id, first_name, last_name, birth_date, dni, gender, has_disability, notes)
 VALUES
@@ -706,7 +705,7 @@ VALUES
   (702, 546, 'HUGO', 'GUTIERREZ', '2002-02-22', NULL, 'M', FALSE, NULL),
   (703, 546, 'NAHIARA', 'GUTIERREZ', '2013-12-09', '53675356', 'F', FALSE, NULL),
   (704, 546, 'FRANCESCA', 'LIN GUTIERREZ', '2020-01-21', '58139746', 'F', FALSE, NULL),
-  (705, 549, 'MELANY BELEN', NULL, '2003-06-19', '44935647', 'F', FALSE, NULL),
+  (705, 549, 'MELANY BELEN', 'LOPEZ', '2003-06-19', '44935647', 'F', FALSE, NULL),
   (706, 549, 'ARIADNA', 'LOPEZ', '2009-12-30', '49823321', 'F', FALSE, NULL),
   (707, 551, 'THOMAS AGUSTI', 'LOZANO', '2016-09-10', '47484673', 'M', FALSE, NULL),
   (708, 555, 'LUDMILA', 'MAYER', '2008-01-21', '48435292', 'F', FALSE, NULL),

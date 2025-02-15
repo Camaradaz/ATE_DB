@@ -1,4 +1,3 @@
--- Create sectors table
 CREATE TABLE IF NOT EXISTS sectors (
     sector_id SERIAL PRIMARY KEY,
     sector_name VARCHAR(50) NOT NULL UNIQUE,

@@ -1,4 +1,3 @@
--- Create benefits/products table
 CREATE TABLE benefits (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -12,7 +11,6 @@ CREATE TABLE benefits (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create table for stock movements
 CREATE TABLE benefit_movements (
     id SERIAL PRIMARY KEY,
     benefit_id INTEGER REFERENCES benefits(id),
@@ -23,7 +21,6 @@ CREATE TABLE benefit_movements (
     created_by VARCHAR(100)
 );
 
--- Add trigger to update stock automatically
 CREATE OR REPLACE FUNCTION update_benefit_stock()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -47,7 +44,7 @@ CREATE TRIGGER update_stock_after_movement
     FOR EACH ROW
     EXECUTE FUNCTION update_benefit_stock();
 
--- Add trigger to update updated_at
+
 CREATE TRIGGER update_benefits_updated_at
     BEFORE UPDATE ON benefits
     FOR EACH ROW
